@@ -1,23 +1,36 @@
-<html>
-    <body>
-        <button onclick="getLocation()">Get Location</button>
-<p id="location"></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geolocation</title>
+<style>
+#demo {
+  font-size: 75px; 
+}
+</style>
+</head>
+<body>
+<p id="demo"></p>
 
 <script>
-  function getLocation() {
-    // Если геолокация поддерживается браузером
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-      document.getElementById("location").innerHTML = "Геолокация не поддерживается.";
-    }
-  }
+window.onload = function() {
+  getLocation();
+};
 
-  function showPosition(position) {
-    var lat = position.coords.latitude;
-    var lon = position.coords.longitude;
-    document.getElementById("location").innerHTML = "Широта: " + lat + "<br>Долгота: " + lon;
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    document.getElementById("demo").innerHTML = "Геолокация не поддерживается этим браузером.";
   }
+}
+
+function showPosition(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  document.getElementById("demo").innerHTML = "Широта: " + latitude + "<br>Долгота: " + longitude;
+}
 </script>
-    </body>
+</body>
 </html>
